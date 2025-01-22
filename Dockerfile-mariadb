@@ -1,0 +1,6 @@
+FROM mariadb:latest
+
+WORKDIR /
+
+COPY docker-entrypoint-initdb.d .
+

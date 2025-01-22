@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  mariadb:
+    image: mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
+      - MARIADB_USER=bn_suitecrm
+      - MARIADB_DATABASE=bitnami_suitecrm
+      - MARIADB_PASSWORD=bitnami123
+    volumes:
+      - './mariadb_data:/var/lib/mysql:Z'
+
+  suitecrm:
+    image: suitecrm
+    build:
+      context: .
+      dockerfile: Dockerfile-suitecrm
+    ports:
+      - '80:80'
+#      - '8080:80'
+    environment:
+      - SUITECRM_HOST=suitecrm.performantlabs.com
+    volumes:
+      - './suitecrm_data:/var/www/html/crm'
+

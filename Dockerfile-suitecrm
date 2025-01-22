@@ -1,0 +1,10 @@
+FROM ubuntu:24.04
+
+WORKDIR /
+
+COPY install-suitecrm.sh .
+COPY entrypoint-suitecrm.sh .
+RUN ./install-suitecrm.sh
+
+CMD [ "/entrypoint-suitecrm.sh" ]
+
